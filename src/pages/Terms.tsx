@@ -28,7 +28,7 @@ const Terms: React.FC = () => {
                   <strong>Last Updated:</strong> December 2024
                 </p>
                 <p className="text-gray-700 mt-2">
-                  These Terms and Conditions ("Terms") govern your use of services provided by Cybernated Pvt Ltd. By using our services, you agree to these Terms.
+                  These Terms and Conditions ("Terms") govern your use of services provided by Cybernated Technology Pvt Ltd. By using our services, you agree to these Terms.
                 </p>
               </div>
             </div>
@@ -56,7 +56,7 @@ const Terms: React.FC = () => {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Services Description</h2>
               <div className="prose prose-lg text-gray-600">
-                <p>Cybernated Pvt Ltd provides technology consulting and development services, including but not limited to:</p>
+                <p>Cybernated Technology Pvt Ltd provides technology consulting and development services, including but not limited to:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Web application development</li>
                   <li>Mobile application development</li>
@@ -90,7 +90,7 @@ const Terms: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Intellectual Property</h2>
               <div className="prose prose-lg text-gray-600">
                 <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Our Intellectual Property</h3>
-                <p>All proprietary methods, processes, and know-how developed by Cybernated Pvt Ltd remain our intellectual property. This includes:</p>
+                <p>All proprietary methods, processes, and know-how developed by Cybernated Technology Pvt Ltd remain our intellectual property. This includes:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Proprietary development methodologies</li>
                   <li>Reusable code libraries and frameworks</li>
@@ -144,7 +144,7 @@ const Terms: React.FC = () => {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation of Liability</h2>
               <div className="prose prose-lg text-gray-600">
-                <p>To the fullest extent permitted by law, Cybernated Pvt Ltd shall not be liable for:</p>
+                <p>To the fullest extent permitted by law, Cybernated Technology Pvt Ltd shall not be liable for:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Indirect, incidental, or consequential damages</li>
                   <li>Loss of profits, revenue, or business opportunities</li>
@@ -214,7 +214,7 @@ const Terms: React.FC = () => {
                   <div className="prose prose-lg text-gray-600">
                     <p>For questions about these Terms or our services, please contact us:</p>
                     <div className="mt-4">
-                      <p><strong>Company:</strong> Cybernated Pvt Ltd</p>
+                      <p><strong>Company:</strong> Cybernated Technology Pvt Ltd</p>
                       <p><strong>Email:</strong> <a href="mailto:deependrajhariya@gmail.com" className="text-blue-600 hover:text-blue-800">deependrajhariya@gmail.com</a></p>
                       <p><strong>Phone:</strong> <a href="tel:+918719989752" className="text-blue-600 hover:text-blue-800">+91 8719989752</a></p>
                       <p><strong>Contact Person:</strong> Deependra Jhariya</p>

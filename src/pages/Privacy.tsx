@@ -25,7 +25,7 @@ const Privacy: React.FC = () => {
               <strong>Last Updated:</strong> December 2024
             </p>
             <p className="text-gray-700 mt-2">
-              This Privacy Policy describes how Cybernated Pvt Ltd ("we," "our," or "us") collects, uses, and shares information about you when you use our services.
+              This Privacy Policy describes how Cybernated Technology Pvt Ltd ("we," "our," or "us") collects, uses, and shares information about you when you use our services.
             </p>
           </div>
 
@@ -155,7 +155,7 @@ const Privacy: React.FC = () => {
                 <div className="mt-4">
                   <p><strong>Email:</strong> <a href="mailto:deependrajhariya@gmail.com" className="text-blue-600 hover:text-blue-800">deependrajhariya@gmail.com</a></p>
                   <p><strong>Phone:</strong> <a href="tel:+918719989752" className="text-blue-600 hover:text-blue-800">+91 8719989752</a></p>
-                  <p><strong>Company:</strong> Cybernated Pvt Ltd</p>
+                  <p><strong>Company:</strong> Cybernated Technology Pvt Ltd</p>
                 </div>
               </div>
             </div>

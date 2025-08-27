@@ -3,18 +3,20 @@ import { User, Award, Briefcase } from "lucide-react";
 
 import DeependraImage from "../assets/images/Deependra.jpeg";
 import AmitRai from "../assets/images/AmitRai.jpeg";
+import Nikhil from "../assets/images/Nikhil.jpeg";
 const Partners: React.FC = () => {
   const partners = [
     {
       name: "Deependra Jhariya",
       role: "Founder & CEO",
       description:
-        "Passionate technology leader with expertise in full-stack development and digital transformation strategies.",
+        "React Native developer with expertise in building cross-platform mobile applications for iOS and Android, skilled in creating performant, user-friendly, and scalable solutions.",
       expertise: [
         "Full-Stack Development",
-        "Cloud Architecture",
-        "Team Leadership",
-        "Digital Strategy",
+        "React-Native",
+        "Firebase",
+        "GetStream",
+        "Redux-toolKit",
       ],
       img: DeependraImage,
     },
@@ -29,7 +31,7 @@ const Partners: React.FC = () => {
         "Market Analysis",
         "Partnership Development",
       ],
-      img: DeependraImage,
+      img: Nikhil,
     },
     {
       name: "Amit Rai",
@@ -37,6 +39,7 @@ const Partners: React.FC = () => {
       description:
         "Operations expert ensuring seamless project delivery and maintaining the highest quality standards.",
       expertise: [
+        "Full-Stack Developer",
         "Project Management",
         "Quality Assurance",
         "Process Optimization",

@@ -23,7 +23,7 @@ const About: React.FC = () => {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
               <p className="text-lg text-gray-600 mb-4">
-                Founded with a vision to bridge the gap between technology and business success, Cybernated Pvt Ltd has been at the forefront of digital innovation. We specialize in creating custom solutions that not only meet current needs but anticipate future challenges.
+                Founded with a vision to bridge the gap between technology and business success, Cybernated Technology Pvt Ltd has been at the forefront of digital innovation. We specialize in creating custom solutions that not only meet current needs but anticipate future challenges.
               </p>
               <p className="text-lg text-gray-600 mb-4">
                 Our team of experienced professionals combines technical expertise with business acumen to deliver solutions that drive real results. We believe in building long-term partnerships with our clients, supporting their growth every step of the way.
