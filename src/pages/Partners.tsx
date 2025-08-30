@@ -4,6 +4,8 @@ import { User, Award, Briefcase } from "lucide-react";
 import DeependraImage from "../assets/images/Deependra.jpeg";
 import AmitRai from "../assets/images/AmitRai.jpeg";
 import Nikhil from "../assets/images/Nikhil.jpeg";
+import Manish from "../assets/images/Manish.jpeg";
+
 const Partners: React.FC = () => {
   const partners = [
     {
@@ -46,6 +48,19 @@ const Partners: React.FC = () => {
         "Resource Planning",
       ],
       img: AmitRai,
+    },
+    {
+      name: "Manish Yadav",
+      role: "COO & CTO",
+      description:
+        "Experienced technology leader and operations strategist with a proven track record in driving end-to-end project delivery. Skilled in optimizing processes, managing resources effectively,",
+      expertise: [
+        "Full-Stack Developer",
+        "Project Management",
+        "Process Optimization",
+        "Resource Planning",
+      ],
+      img: Manish,
     },
   ];
 
