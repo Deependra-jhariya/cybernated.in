@@ -1,10 +1,11 @@
 import React from "react";
 import { User, Award, Briefcase } from "lucide-react";
 
-import DeependraImage from "../assets/images/Deependra.jpeg";
+import Deependra from "../assets/images/Deependra.jpeg";
 import AmitRai from "../assets/images/AmitRai.jpeg";
 import Nikhil from "../assets/images/Nikhil.jpeg";
 import Manish from "../assets/images/Manish.jpeg";
+import Hitesh from "../assets/images/Hitesh.jpeg";
 
 const Partners: React.FC = () => {
   const partners = [
@@ -20,7 +21,7 @@ const Partners: React.FC = () => {
         "GetStream",
         "Redux-toolKit",
       ],
-      img: DeependraImage,
+      img: Deependra,
     },
     {
       name: "Nikhil Patel",
@@ -61,6 +62,22 @@ const Partners: React.FC = () => {
         "Resource Planning",
       ],
       img: Manish,
+    },
+    {
+      name: "Hitesh Shrivastava",
+      role: "Operation Manager & Head of Design Research",
+      description:
+        "Innovative design leader and operations strategist with expertise in research-driven management and user-centered design. Skilled in analyzing complex problems, creating efficient solutions, and leading design initiatives that align with business goals. Passionate about combining management insights with design thinking to deliver impactful and scalable solutions..",
+      expertise: [
+        "Operations Management",
+        "Design Research & Analysis",
+        "User Experience Strategy",
+        "Team Leadership",
+        "Team Management",
+        "Innovation & Design Thinking",
+        "Strategic Planning",
+      ],
+      img: Hitesh,
     },
   ];
 
