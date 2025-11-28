@@ -84,15 +84,20 @@ const Partners: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-slate-900 text-white py-32 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Our Partners
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Partners</span>
             </h1>
-            <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-              Meet the dedicated professionals who drive Cybernated's vision of
-              technological excellence and business success
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto font-light">
+              Meet the dedicated professionals who drive Cybernated's vision of technological excellence and business success
             </p>
           </div>
         </div>

@@ -1,159 +1,266 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Zap, Shield, Rocket, Users, Star, Award, Briefcase, TrendingUp, Heart, Code, Globe, Smartphone, CheckCircle, Calendar, FolderOpen, ThumbsUp, Cloud } from "lucide-react";
-import BgImages from "../assets/images/Dashboard.jpg";
+import { ArrowRight, Zap, Shield, Rocket, Users, Star, Award, Heart, Code, Globe, Smartphone, CheckCircle, Calendar, FolderOpen, ThumbsUp, Cloud, ChevronLeft, ChevronRight } from "lucide-react";
+// import BgImages from "../assets/images/Dashboard.jpg"; // Removed unused import
+
+const slides = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920",
+    title: "Innovate Your Digital Future",
+    subtitle: "Transforming businesses through cutting-edge technology solutions and digital excellence.",
+    ctaText: "Our Services",
+    ctaLink: "/services"
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1920",
+    title: "Expert Team, Proven Results",
+    subtitle: "Collaborate with industry experts to build scalable and secure software tailored to your needs.",
+    ctaText: "Meet the Team",
+    ctaLink: "/about"
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1920",
+    title: "Design That Inspires",
+    subtitle: "Crafting intuitive and beautiful user experiences that engage and delight your customers.",
+    ctaText: "View Projects",
+    ctaLink: "/projects"
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920",
+    title: "Strategic Digital Marketing",
+    subtitle: "Data-driven strategies to grow your brand and reach your target audience effectively.",
+    ctaText: "Get Started",
+    ctaLink: "/contact"
+  }
+];
 
 const Home: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
     <div className="bg-white">
-      {/* Hero Section */}
+      {/* Hero Section with Slider */}
+      <section className="relative text-white h-[600px] md:h-[700px] overflow-hidden group">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+              }`}
+          >
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center transform scale-105 transition-transform duration-[10000ms]"
+              style={{ backgroundImage: `url(${slide.image})` }}
+            ></div>
 
-      <section className="relative text-white h-screen overflow-hidden">
-        {/* Background with zoom animation */}
-        <div
-          className="absolute inset-0 bg-cover bg-center animate-zoom"
-          style={{ backgroundImage: `url(${BgImages})` }}
-        ></div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-blue-900/70"></div>
-
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Welcome to <span className="text-white">Cybernated</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-              Transforming businesses through innovative technology solutions
-              and digital excellence
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/services"
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-200 flex items-center justify-center"
-              >
-                Our Services <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                to="/contact"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-200"
-              >
-                Get in Touch
-              </Link>
+            {/* Content */}
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center items-center text-center">
+              <h1 className={`text-4xl md:text-6xl font-bold mb-6 transform transition-all duration-700 delay-300 ${index === currentSlide ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}>
+                {slide.title}
+              </h1>
+              <p className={`text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto transform transition-all duration-700 delay-500 ${index === currentSlide ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}>
+                {slide.subtitle}
+              </p>
+              <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-700 delay-700 ${index === currentSlide ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}>
+                <Link
+                  to={slide.ctaLink}
+                  className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center"
+                >
+                  {slide.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors duration-200"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </div>
+        ))}
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transition-all duration-200 opacity-0 group-hover:opacity-100 z-20"
+        >
+          <ChevronLeft className="h-8 w-8" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transition-all duration-200 opacity-0 group-hover:opacity-100 z-20"
+        >
+          <ChevronRight className="h-8 w-8" />
+        </button>
+
+        {/* Dots Indicators */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-blue-500 w-8" : "bg-white/50 hover:bg-white"
+                }`}
+            />
+          ))}
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Cybernated?
+      <section className="py-24 bg-slate-900 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Cybernated?</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We deliver cutting-edge solutions that drive your business forward
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto font-light">
+              We engineer digital excellence with a focus on scalability, security, and user experience.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-blue-600" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Feature 1 */}
+            <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              <div className="relative z-10">
+                <div className="bg-blue-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Zap className="h-7 w-7 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Rapid Innovation
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Accelerate your time-to-market with our agile development methodologies and cutting-edge tech stack.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Innovation
-              </h3>
-              <p className="text-gray-600">
-                Cutting-edge technology solutions that keep you ahead of the
-                competition
-              </p>
             </div>
 
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-green-600" />
+            {/* Feature 2 */}
+            <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              <div className="relative z-10">
+                <div className="bg-green-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Shield className="h-7 w-7 text-green-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Bank-Grade Security
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Protect your assets with enterprise-grade security protocols, encryption, and compliance standards.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Security
-              </h3>
-              <p className="text-gray-600">
-                Enterprise-grade security measures to protect your valuable data
-              </p>
             </div>
 
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Rocket className="h-8 w-8 text-purple-600" />
+            {/* Feature 3 */}
+            <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              <div className="relative z-10">
+                <div className="bg-purple-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Rocket className="h-7 w-7 text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  High Performance
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Systems designed for scale. We optimize every line of code to ensure lightning-fast performance.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Performance
-              </h3>
-              <p className="text-gray-600">
-                High-performance solutions that scale with your growing business
-              </p>
             </div>
 
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-              <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-orange-600" />
+            {/* Feature 4 */}
+            <div className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              <div className="relative z-10">
+                <div className="bg-orange-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="h-7 w-7 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Dedicated Support
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Your success is our priority. Our expert team provides 24/7 support and maintenance.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Support
-              </h3>
-              <p className="text-gray-600">
-                24/7 expert support to ensure your success every step of the way
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Years of Experience & Stats Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-slate-900 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-800 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Built on Consistent Delivery
             </h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               Three focused years of building production-ready software for ambitious teams
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-8 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-white/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Calendar className="h-10 w-10 text-white" />
+            <div className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="bg-blue-500/20 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Calendar className="h-10 w-10 text-blue-400" />
               </div>
-              <div className="text-5xl font-bold mb-2">3+</div>
-              <div className="text-lg text-blue-100">Years of Experience</div>
+              <div className="text-5xl font-bold text-white mb-2">3+</div>
+              <div className="text-lg text-slate-400">Years of Experience</div>
             </div>
 
-            <div className="text-center p-8 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-white/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-10 w-10 text-white" />
+            <div className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="bg-purple-500/20 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Users className="h-10 w-10 text-purple-400" />
               </div>
-              <div className="text-5xl font-bold mb-2">5</div>
-              <div className="text-lg text-blue-100">Long-term Clients</div>
+              <div className="text-5xl font-bold text-white mb-2">5</div>
+              <div className="text-lg text-slate-400">Long-term Clients</div>
             </div>
 
-            <div className="text-center p-8 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-white/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FolderOpen className="h-10 w-10 text-white" />
+            <div className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="bg-green-500/20 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FolderOpen className="h-10 w-10 text-green-400" />
               </div>
-              <div className="text-5xl font-bold mb-2">11</div>
-              <div className="text-lg text-blue-100">Projects Delivered</div>
+              <div className="text-5xl font-bold text-white mb-2">11</div>
+              <div className="text-lg text-slate-400">Projects Delivered</div>
             </div>
 
-            <div className="text-center p-8 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              <div className="bg-white/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="h-10 w-10 text-white" />
+            <div className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="bg-orange-500/20 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Award className="h-10 w-10 text-orange-400" />
               </div>
-              <div className="text-5xl font-bold mb-2">2</div>
-              <div className="text-lg text-blue-100">Industry Awards</div>
+              <div className="text-5xl font-bold text-white mb-2">2</div>
+              <div className="text-lg text-slate-400">Industry Awards</div>
             </div>
           </div>
         </div>
@@ -276,8 +383,12 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                <Code className="h-16 w-16 text-white group-hover:scale-110 transition-transform duration-300" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800"
+                  alt="E-commerce Shopping"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-2">
@@ -297,8 +408,12 @@ const Home: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
-                <Smartphone className="h-16 w-16 text-white group-hover:scale-110 transition-transform duration-300" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800"
+                  alt="Healthcare Technology"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-2">
@@ -318,8 +433,12 @@ const Home: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
-                <Rocket className="h-16 w-16 text-white group-hover:scale-110 transition-transform duration-300" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
+                  alt="Cloud Infrastructure"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-2">
@@ -339,8 +458,12 @@ const Home: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
-                <Shield className="h-16 w-16 text-white group-hover:scale-110 transition-transform duration-300" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800"
+                  alt="Cybersecurity"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-2">
@@ -360,8 +483,12 @@ const Home: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center">
-                <TrendingUp className="h-16 w-16 text-white group-hover:scale-110 transition-transform duration-300" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+                  alt="Logistics Analytics"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-2">
@@ -381,8 +508,12 @@ const Home: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center">
-                <Briefcase className="h-16 w-16 text-white group-hover:scale-110 transition-transform duration-300" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800"
+                  alt="Construction Management"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-2">
@@ -404,7 +535,7 @@ const Home: React.FC = () => {
 
           <div className="text-center mt-12">
             <Link
-              to="/services"
+              to="/projects"
               className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
             >
               View All Projects <ArrowRight className="ml-2 h-5 w-5" />
